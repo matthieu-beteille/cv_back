@@ -1,5 +1,5 @@
 module.exports.policies = {
-
+  '*' : 'CORS'
   /*'*': ['isAuthenticated', 'CORS'],
 
 

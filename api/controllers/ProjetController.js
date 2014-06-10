@@ -17,7 +17,7 @@ module.exports = {
     if(req.param('fin'))
       params.fin= req.param('fin');
     if(req.param('nbMembres'))
-      params.fin= req.param('nbMembres');
+      params.nbMembres= req.param('nbMembres');
 
     Projet.create(params).exec(function(err, resource){
       if(err){
@@ -42,7 +42,7 @@ module.exports = {
     if(req.param('fin'))
       params.fin= req.param('fin');
     if(req.param('nbMembres'))
-      params.fin= req.param('nbMembres');
+      params.nbMembres= req.param('nbMembres');
 
     Projet.update({id : req.params.id}, params).exec(function(err, resource){
       if(err){

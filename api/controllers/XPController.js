@@ -73,7 +73,7 @@ module.exports = {
   },
 
   query: function(req, res){
-    XP.find().exec(function(err, resources){
+    XP.find().populate('projets').exec(function(err, resources){
       if(err){
         res.send({error : err}, 500)
       } else if(resources){
@@ -113,7 +113,7 @@ module.exports = {
     if(req.param('fin'))
       params.fin= req.param('fin');
     if(req.param('nbMembres'))
-      params.fin= req.param('nbMembres');
+      params.nbMembres = req.param('nbMembres');
 
     XP.findOne(req.params.id).exec(function(err, resource){
       if(err){
