@@ -22,7 +22,7 @@ module.exports = {
 
     createProject: function(params, cb){
       var self=this;
-      params.xp = this.id
+      params.xp = this.id;
       Projet.create(params).exec(function(err, projet){
         if(err){
           cb(err)

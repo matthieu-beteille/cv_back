@@ -1,5 +1,5 @@
 /**
- * ProjetController.js 
+ * CompetenceController.js
  *
  * @description ::
  * @docs        :: http://sailsjs.org/#!documentation/controllers
@@ -10,16 +10,12 @@ module.exports = {
     var params = {}
     if(req.param('nom'))
       params.nom= req.param('nom');
-    if(req.param('description'))
-      params.description= req.param('description');
-    if(req.param('debut'))
-      params.debut= req.param('debut');
-    if(req.param('fin'))
-      params.fin= req.param('fin');
-    if(req.param('nbMembres'))
-      params.nbMembres= req.param('nbMembres');
+    if(req.param('niveau'))
+      params.niveau= req.param('niveau');
+    if(req.param('type'))
+      params.type= req.param('type');
 
-    Projet.create(params).exec(function(err, resource){
+    Competence.create(params).exec(function(err, resource){
       if(err){
         res.send({error : err}, 500)
       } else if(resource){
@@ -35,16 +31,12 @@ module.exports = {
     var params = {}
     if(req.param('nom'))
       params.nom= req.param('nom');
-    if(req.param('description'))
-      params.description= req.param('description');
-    if(req.param('debut'))
-      params.debut= req.param('debut');
-    if(req.param('fin'))
-      params.fin= req.param('fin');
-    if(req.param('nbMembres'))
-      params.nbMembres= req.param('nbMembres');
+    if(req.param('niveau'))
+      params.niveau= req.param('niveau');
+    if(req.param('type'))
+      params.type= req.param('type');
 
-    Projet.update({id : req.params.id}, params).exec(function(err, resource){
+    Competence.update({id : req.params.id}, params).exec(function(err, resource){
       if(err){
         res.send({error : err}, 500)
       } else if(resource[0]){
@@ -56,7 +48,7 @@ module.exports = {
   },
 
   get: function(req, res){
-    Projet.findOne(req.params.id).exec(function(err, resource){
+    Competence.findOne(req.params.id).exec(function(err, resource){
       if(err){
         res.send({error : err}, 500)
       } else if(resource){
@@ -68,7 +60,7 @@ module.exports = {
   },
 
   query: function(req, res){
-    Projet.find().exec(function(err, resources){
+    Competence.find().exec(function(err, resources){
       if(err){
         res.send({error : err}, 500)
       } else if(resources){
@@ -80,37 +72,11 @@ module.exports = {
   },
 
   delete: function(req, res){
-    Projet.findOne(req.params.id).exec(function(err, resource){
+    Competence.findOne(req.params.id).exec(function(err, resource){
       if(err){
         res.send({error : err}, 500)
       } else if(resource){
         resource.destroy(function(err){
-          if(err){
-            res.send({error : err}, 500)
-          } else {
-            res.send(resource, 200)
-          }
-        })
-      } else {
-        res.send({error : res.i18n('MESS_ERR_NOT_FOUND')},404)
-      }
-    })
-  },
-
-  addCompetence: function(req, res){
-    var params = {}
-    if(req.param('nom'))
-      params.nom= req.param('nom');
-    if(req.param('niveau'))
-      params.niveau= req.param('niveau');
-    if(req.param('type'))
-      params.type= req.param('type');
-
-    Projet.findOne(req.params.id).exec(function(err, resource){
-      if(err){
-        res.send({error : err}, 500)
-      } else if(resource){
-        resource.createCompetence(params, function(err, resource){
           if(err){
             res.send({error : err}, 500)
           } else {

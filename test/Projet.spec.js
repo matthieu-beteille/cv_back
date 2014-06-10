@@ -62,6 +62,12 @@ describe('Projet Controller', function() {
     nbMembres: 6
   };
 
+  var competence = {
+    nom: 'anglais',
+    niveau: 20,
+    type: 'langue'
+  };
+
   describe('create()', function () {
     before(function (done) {
       done();
@@ -295,6 +301,44 @@ describe('Projet Controller', function() {
         })
     })
   })
+
+
+  describe('addCompetence()', function(){
+    var id;
+
+    before(function(done){
+      Projet.create(resource).exec(function(err, resource){
+        id = resource.id;
+        done()
+      })
+    });
+
+    after(function(done){
+      Projet.destroy().exec(function(err, resource){
+        done()
+      })
+    });
+
+    it('should add a competence', function(done){
+      request(app.ws.server)
+        .post('/projet/'+ id + '/competences')
+        .send(competence)
+        .end(function (err, res) {
+          console.log(res.body);
+          // checkResponse(res);
+         /* Projet.findOne(id).populate('competences').exec(function(err, resource){
+            console.log(resource.competences)
+            assert(resource.competences.length==1);
+            delete resource.competences[0].createdAt;
+            delete resource.competences[0].updatedAt;
+            isEqual(resource.competences[0], competence);
+            done()
+          })*/
+          done()
+        })
+    })
+  })
+
 
 
 })

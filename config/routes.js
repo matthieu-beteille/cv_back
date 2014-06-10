@@ -95,7 +95,43 @@ module.exports.routes = {
   'put /projet/:id': {
     controller: "ProjetController",
     action: 'edit'
+  },
+
+  'put /projet/:id/competences': {
+    controller: "ProjetController",
+    action: 'addCompetence'
+  },
+
+
+  /*
+   Routes concernant les compétences
+   */
+
+  'get /competence/:id': {
+    controller: "CompetenceController",
+    action: 'get'
+  },
+
+  'get /competence': {
+    controller: "CompetenceController",
+    action: 'query'
+  },
+
+  'post /competence': {
+    controller: "CompetenceController",
+    action: 'create'
+  },
+
+  'delete /competence/:id': {
+    controller: "CompetenceController",
+    action: 'delete'
+  },
+
+  'put /competence/:id': {
+    controller: "CompetenceController",
+    action: 'edit'
   }
+
 
 
 

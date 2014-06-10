@@ -13,7 +13,23 @@ module.exports = {
       debut: 'date',
       fin : 'date',
       nbMembres : 'integer',
-      xp : {model : 'XP'}
+      xp : {  model : 'XP'},
+      competences : { collection : 'Competence',
+                      via : 'projets' },
+
+      createCompetence: function(params, cb){
+        var self=this;
+        Competence.create(params).exec(function(err, comp){
+          if(err){
+            cb(err)
+          } else {
+            self.competences.add(comp.id);
+            self.save(function(err,proj){
+              cb(err, self);
+            })
+          }
+        })
+      }
 	}
 
 };
