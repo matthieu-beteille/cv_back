@@ -73,7 +73,11 @@ module.exports = {
   },
 
   query: function(req, res){
-    XP.find().populate('projets').exec(function(err, resources){
+    var params = {}
+    if(req.param('type'))
+      params.type= req.param('type');
+
+    XP.find(params).populate('projets').exec(function(err, resources){
       if(err){
         res.send({error : err}, 500)
       } else if(resources){

@@ -141,11 +141,13 @@ describe('Projet Controller', function() {
           var res1 = res.body[0];
           //NOTE: Supprimer les collections du modèle
           delete res1.id
+          delete res1.competences
           assert(isEqual(res1,resource));
 
           //NOTE: Supprimer les collections du modèle
           var res2 = res.body[1]
           delete res2.id
+          delete res2.competences
           assert(isEqual(res2, modificatedProjet));
           done()
         });
@@ -194,7 +196,7 @@ describe('Projet Controller', function() {
           var resp = res.body
           //NOTE: Supprimer les collections du modèle
           delete resp.id;
-
+          delete resp.competences
           assert(isEqual(resp,resource));
           done()
         })
@@ -276,7 +278,7 @@ describe('Projet Controller', function() {
     var id;
 
     before(function(done){
-      Projet.create({attr1: 'test'}).exec(function(err, resource){
+      Projet.create(resource).exec(function(err, resource){
         id = resource.id;
         done()
       })
@@ -315,7 +317,9 @@ describe('Projet Controller', function() {
 
     after(function(done){
       Projet.destroy().exec(function(err, resource){
-        done()
+        Competence.destroy().exec(function(err, resource){
+          done()
+        })
       })
     });
 
@@ -324,17 +328,54 @@ describe('Projet Controller', function() {
         .post('/projet/'+ id + '/competences')
         .send(competence)
         .end(function (err, res) {
-          console.log(res.body);
-          // checkResponse(res);
-         /* Projet.findOne(id).populate('competences').exec(function(err, resource){
+          Projet.findOne(id).populate('competences').exec(function(err, resource){
             console.log(resource.competences)
             assert(resource.competences.length==1);
             delete resource.competences[0].createdAt;
             delete resource.competences[0].updatedAt;
             isEqual(resource.competences[0], competence);
             done()
-          })*/
+          });
+        })
+    })
+  })
+
+  describe('removeCompetence()', function(){
+    var id;
+
+    before(function(done){
+      Projet.create(resource).exec(function(err, resource){
+        id = resource.id;
+        done()
+      })
+    });
+
+    after(function(done){
+      Projet.destroy().exec(function(err, resource){
+        Competence.destroy().exec(function(err, resource){
           done()
+        })
+      })
+    });
+
+    it('should remove a competence', function(done){
+      request(app.ws.server)
+        .post('/projet/'+ id + '/competences')
+        .send(competence)
+        .end(function (err, res) {
+          Projet.findOne(id).populate('competences').exec(function(err, resource){
+            assert(resource.competences.length==1);
+            var comp_id = resource.competences[0].id
+            request(app.ws.server)
+              .delete('/projet/'+ id + '/competences/' + comp_id)
+              .end(function (err, res) {
+                Projet.findOne(id).populate('competences').exec(function(err, resource){
+                  console.log(resource.competences)
+                  assert(resource.competences.length==0);
+                  done()
+                });
+              })
+          });
         })
     })
   })

@@ -97,9 +97,14 @@ module.exports.routes = {
     action: 'edit'
   },
 
-  'put /projet/:id/competences': {
+  'post /projet/:id/competences': {
     controller: "ProjetController",
     action: 'addCompetence'
+  },
+
+  'delete /projet/:id/competences/:comp_id': {
+    controller: "ProjetController",
+    action: 'removeCompetence'
   },
 
 

@@ -56,7 +56,7 @@ module.exports = {
   },
 
   get: function(req, res){
-    Projet.findOne(req.params.id).exec(function(err, resource){
+    Projet.findOne(req.params.id).populate('competences').exec(function(err, resource){
       if(err){
         res.send({error : err}, 500)
       } else if(resource){
@@ -68,7 +68,7 @@ module.exports = {
   },
 
   query: function(req, res){
-    Projet.find().exec(function(err, resources){
+    Projet.find().populate('competences').exec(function(err, resources){
       if(err){
         res.send({error : err}, 500)
       } else if(resources){
@@ -115,6 +115,25 @@ module.exports = {
             res.send({error : err}, 500)
           } else {
             res.send(resource, 200)
+          }
+        })
+      } else {
+        res.send({error : res.i18n('MESS_ERR_NOT_FOUND')},404)
+      }
+    })
+  },
+
+  removeCompetence: function(req, res){
+    Projet.findOne(req.params.id).exec(function(err, resource){
+      if(err){
+        res.send({error : err}, 500)
+      } else if(resource){
+        resource.competences.remove(req.params.comp_id);
+        resource.save(function(err, resource){
+          if(err){
+            res.send({error : err}, 500)
+          } else {
+            res.send(resource, 200);
           }
         })
       } else {
