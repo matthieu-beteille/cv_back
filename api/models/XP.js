@@ -29,7 +29,7 @@ module.exports = {
         } else {
           self.projets.add(projet.id);
           self.save(function(err,xp){
-            cb(err, self);
+            cb(err, projet);
           })
         }
       })

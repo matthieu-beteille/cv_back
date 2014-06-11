@@ -110,11 +110,11 @@ module.exports = {
       if(err){
         res.send({error : err}, 500)
       } else if(resource){
-        resource.createCompetence(params, function(err, resource){
+        resource.createCompetence(params, function(err, comp){
           if(err){
             res.send({error : err}, 500)
           } else {
-            res.send(resource, 200)
+            res.send(comp, 200)
           }
         })
       } else {

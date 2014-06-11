@@ -19,16 +19,28 @@ module.exports = {
 
       createCompetence: function(params, cb){
         var self=this;
-        Competence.create(params).exec(function(err, comp){
+        Competence.findOne({nom : params.nom}).exec(function(err, comp){
           if(err){
             cb(err)
-          } else {
-            self.competences.add(comp.id);
+          } else if (comp){
+            self.competences.add(comp.id)
             self.save(function(err,proj){
-              cb(err, self);
+              cb(err, comp);
+            })
+          } else {
+            Competence.create(params, params).exec(function(err, comp){
+              if(err){
+                cb(err)
+              } else {
+                self.competences.add(comp.id);
+                self.save(function(err,proj){
+                  cb(err, comp);
+                })
+              }
             })
           }
         })
+
       }
 	}
 

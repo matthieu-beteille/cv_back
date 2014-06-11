@@ -123,11 +123,11 @@ module.exports = {
       if(err){
         res.send({error : err}, 500)
       } else if(resource){
-        resource.createProject(params, function(err, resource){
+        resource.createProject(params, function(err, projet){
           if(err){
             res.send({error : err}, 500)
           } else {
-            res.send(resource, 200)
+            res.send(projet, 200)
           }
         })
       } else {
