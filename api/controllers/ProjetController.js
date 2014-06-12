@@ -68,7 +68,7 @@ module.exports = {
   },
 
   query: function(req, res){
-    Projet.find().populate('competences').exec(function(err, resources){
+    Projet.find().populate('competences').sort('fin').exec(function(err, resources){
       if(err){
         res.send({error : err}, 500)
       } else if(resources){
