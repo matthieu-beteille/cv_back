@@ -40,14 +40,19 @@
 module.exports.adapters = {
   'default': 'mongo',
 
-  mongo: {
+ mongo: {
+    module   : 'sails-mongo',
+    url: "mongodb://cvfront:cvfront@kahana.mongohq.com:10086/cv_db",
+    schema: true
+  },
+  /*mongo: {
     module: 'sails-mongo',
     host: 'localhost',
     port: 27017,
     user: '',
     password: '',
     database: 'cv'
-  },
+  },*/
   // Test (memory)
   test: {
       module: 'sails-mongo',
