@@ -10,7 +10,9 @@ module.exports = {
 	attributes: {
     nom : 'string',
     niveau : 'integer',
-    type: 'string', // 'langue', 'informatiques', etc...
+    type: {      type : 'string',
+      in: ['langue', 'informatique']
+    },
     projets : { collection: 'Projet',
                 via : 'competences'}
 	}

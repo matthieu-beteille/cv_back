@@ -19,6 +19,8 @@ module.exports = {
 
       createCompetence: function(params, cb){
         var self=this;
+        console.log('NOM')
+        console.log(params.nom);
         Competence.findOne({nom : params.nom}).exec(function(err, comp){
           if(err){
             cb(err)
@@ -28,7 +30,7 @@ module.exports = {
               cb(err, comp);
             })
           } else {
-            Competence.create(params, params).exec(function(err, comp){
+            Competence.create(params).exec(function(err, comp){
               if(err){
                 cb(err)
               } else {
