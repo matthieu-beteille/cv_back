@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "description": "a Sails application",
   "dependencies": {
+    "barrels": "0.0.3",
     "bcrypt": "0.7.6",
     "connect-flash": "*",
     "ejs": "0.8.4",
