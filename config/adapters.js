@@ -42,7 +42,7 @@ module.exports.adapters = {
 
  mongo: {
     module   : 'sails-mongo',
-    url: process.env.MONGOHQ_URL, //'mongodb://cvfront:cvfront@kahana.mongohq.com:10006/cv_db'
+    url: process.env.MONGOHQ_URL, // variable d'env contenant l'url de la  base
     schema : true
   }/*
   },/*
