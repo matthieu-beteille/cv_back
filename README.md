@@ -1,33 +1,9 @@
+# Backend Mon CV
 
-* * *
-# Serveur Sails JS My CV
-* * *
+Partie BackEnd de mon CV en ligne.
 
+Réalisé à l'aide du framework SailsJS basé sur NodeJS et Express. Utilise actuellement une base mongoDB hébergé sur mongoHQ.
 
+Hébergé sur cv-back.herokuapp.com
 
-##  1. Généralités
-
-##  2. Infos sur la styntaxe MD pour rédiger le readme
-***
-
-# h1
-## h2
-### h3
-
-* item1
-* item2
-* item3
-
-+ item1
-+ item2
-+ item3
-
-1. item1
-2. item2
-3. item3
-
-horizontal rules :
-
-***
- ___
 
