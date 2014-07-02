@@ -1,6 +1,28 @@
 module.exports.policies = {
-  '*' : 'CORS'
-  /*'*': ['isAuthenticated', 'CORS'],
+  '*' : 'CORS',
+
+  CompetenceController:{
+    "create" : ['isAuthorized', 'CORS'],
+    "edit" : ['isAuthorized', 'CORS'],
+    "delete": ['isAuthorized', 'CORS']
+  },
+
+  ProjetController:{
+    "create" : ['isAuthorized', 'CORS'],
+    "edit" : ['isAuthorized', 'CORS'],
+    "delete": ['isAuthorized', 'CORS'],
+    "addCompetence" : ['isAuthorized', 'CORS'],
+    "removeCompetence" : ['isAuthorized', 'CORS']
+  },
+
+  XPController:{
+    "create" : ['isAuthorized', 'CORS'],
+    "edit" : ['isAuthorized', 'CORS'],
+    "delete": ['isAuthorized', 'CORS'],
+    "addProject" : ['isAuthorized', 'CORS']
+  }
+
+  /*'*': ['isAuthorized', 'CORS'],
 
 
   UserController: {

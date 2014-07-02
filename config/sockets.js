@@ -221,51 +221,12 @@ module.exports.sockets = {
   // use cases, Sails allows you to override the authorization behavior 
   // with your own custom logic by specifying a function, e.g:
 
-   authorization: function authorizeAttemptedSocketConnection(reqObj, cb) {
+  /* authorization: function authorizeAttemptedSocketConnection(reqObj, cb) {
 
-        // Any data saved in `handshake` is available in subsequent requests
-        // from this as `req.socket.handshake.*`
 
-        //
-        // to allow the connection, call `cb(null, true)`
-        // to prevent the connection, call `cb(null, false)`
-        // to report an error, call `cb(err)`
+    },*/
 
-     cookieParser(reqObj, {}, function(err) {
-       //console.log(reqObj);
-
-        if (err) {
-          return socketConnectionError(accept,
-              'Error parsing session cookie! \n' + err,
-            'Error parsing session cookie!');
-        }
-        reqObj.sessionID = reqObj.signedCookies[sails.config.session.key];
-
-        var id = reqObj.sessionID;
-
-         Session.get(id, function(err, session) {
-            if(err){
-              cb(err)
-            } else if (session) {
-              var user_id = session.passport.user;
-              Compte.findOne(user_id).populate('superviseur_owner').populate('staff_owner').populate('participant_owner').exec(function (err, sup) {
-                if (err) {
-                  cb(err)
-                } else if (sup) {
-                  reqObj.user = sup;
-                  cb(null, true)
-                } else {
-                  cb(null, false)
-                }
-              });
-            } else {
-              cb(null, false);
-            }
-          });
-      });
-    },
-
-   //authorization: true,
+   authorization: false,
 
 
   // Match string representing the origins that are allowed to connect to the Socket.IO server

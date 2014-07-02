@@ -7,7 +7,7 @@
 
 module.exports = {
   create: function(req, res){
-    var params = {}
+    var params = {};
     if(req.param('nom'))
       params.nom= req.param('nom');
     if(req.param('niveau'))
