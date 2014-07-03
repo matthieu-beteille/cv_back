@@ -40,12 +40,12 @@
 module.exports.adapters = {
   'default': 'mongo',
 
- mongo: {
+ /*mongo: {
     module   : 'sails-mongo',
     url: process.env.MONGOHQ_URL, // variable d'env contenant l'url de la  base
     schema : true
-  }/*
-  },/*
+  }
+  },*/
   mongo: {
     module: 'sails-mongo',
     host: 'localhost',
@@ -53,7 +53,7 @@ module.exports.adapters = {
     user: '',
     password: '',
     database: 'cv'
-  },*/
+  }
   // Test (memory)
   /*test: {
       module: 'sails-mongo',
