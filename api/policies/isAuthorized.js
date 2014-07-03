@@ -13,6 +13,6 @@ module.exports = function (req, res, next) {
   if(req.param('token')=='test'){
    return next();
   } else {
-    res.send('UNALLOWED')
+    res.send('UNALLOWED : niahahah')
   };
 };
